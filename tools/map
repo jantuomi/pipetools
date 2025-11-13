@@ -1,0 +1,21 @@
+#!/bin/sh
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <expr>"
+    echo ""
+    echo "Give the given expression for each newline-separated line in stdin as an argument to echo (think map in many programming languages)."
+    echo 'The iterator variable is called "$ELEM", and the index variable is called "$IDX".'
+    exit 1
+fi
+
+i=0
+while IFS=$'\n' read -r line; do
+    j=0
+    for item in $line; do
+        eval "X${j}='$item'"
+        j=$((j+1))
+    done
+
+    IDX=$i ELEM="$line" eval "echo $1"
+    i=$((i+1))
+done

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <separator>"
+    echo ""
+    echo "Split the stdin into lines, splitting at the given separator character."
+    exit 1
+fi
+
+while IFS=$'\n' read -r line; do
+    for part in $(echo "$line" | tr "$1" '\n'); do
+        echo "$part"
+    done
+done

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ "$#" -ne 0 ]; then
+    echo "Usage: $0"
+    echo ""
+    echo "Echo each whitespace-separated word in stdin on a new line."
+    exit 1
+fi
+
+i=0
+for word in $(cat); do
+    echo "$word"
+done

@@ -1,0 +1,27 @@
+#!/bin/sh
+
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 <init> <expr>"
+    echo ""
+    echo "Run the given command for each newline-separated line in stdin."
+    echo 'The expression computes the next value of "$ACC" (think reduce in many programming languages).'
+    echo 'The initial value of "$ACC" is the first argument to the script.'
+    echo 'The iterator variable is called "$ELEM", and the index variable is called "$IDX".'
+    echo 'The final value of "$ACC" is printed after all lines have been processed.'
+    exit 1
+fi
+
+i=0
+ACC="$1"
+while IFS=$'\n' read -r line; do
+    j=0
+    for item in $line; do
+        eval "X${j}='$item'"
+        j=$((j+1))
+    done
+
+    IDX=$i ELEM="$line" eval "ACC=\"$2\""
+    i=$((i+1))
+done
+
+echo "$ACC"
