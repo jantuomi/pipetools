@@ -49,4 +49,5 @@ Copy the contents of the `tools` directory to a directory in your PATH, or run t
 
 ## Author
 
-Jan Tuomi <<jan@jantuomi.fi>>
+Jan Tuomi <<jan@jantuomi.fi>>  
+Built with 100% natural human intelligence
